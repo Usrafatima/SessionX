@@ -90,6 +90,8 @@ export async function GET(request: NextRequest) {
       log("unauthorized", { hasSecret: Boolean(secret), isVercelCron });
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+  } else {
+    log("CRON_SECRET not set — endpoint is UNAUTHENTICATED", {});
   }
 
   const db = getAdminDb();
